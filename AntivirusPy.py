@@ -1,5 +1,6 @@
 import os
 import hashlib
+import requests
 
 def calcola_hash(nomefile):
 
@@ -17,11 +18,20 @@ def scan_directory(percorso):
             file_path = os.path.join(cartella, file)
 
             file_hash = calcola_hash(file_path)
-            with open("/home/nicola/Documenti/CORSO_INFORMATICA_2023/Python(Ardizzoni)/AntiVirusPy/HashMD5.txt","rb") as f: 
-                for line in f:
+            containfetti = 0
+            for i in range(476 + 1):
+                n=str(i)
+                while(len(n) != 5):
+                    n = '0'+n
+            
+                risposta = requests.get(f"https://virusshare.com/hashfiles/VirusShare_{n}.md5")
+            
+                for line in risposta:
                     if file_hash == line:
                         print(f"{file_path} è infetto!")
-
+                        containfetti += 1
+            if containfetti == 0:
+                print(f"{file_path} è sicuro!")
 
 if __name__=="__main__":
     scan_directory(input("Inserire il percorso del file o della cartella da scannerizzare: "))

@@ -1,7 +1,10 @@
 import requests
 
-
-risposta = requests.get("https://virusshare.com/hashfiles/VirusShare_00000.md5")
+for i in range(476 + 1):
+    n=str(i)
+    while(len(n) != 5):
+        n = '0'+n
+    risposta = requests.get(f"https://virusshare.com/hashfiles/VirusShare_{n}.md5")
 
 
 
