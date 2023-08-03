@@ -8,9 +8,9 @@ for i in range(476 + 1):
 
 
 
-with open ("./HashMD5.txt","wb") as f:
-    for line in risposta:
-        f.write(line)
+    with open ("./HashMD5.txt","a") as f:
+        for line in risposta:
+            f.write(line)
 
 
 print("Finito")
