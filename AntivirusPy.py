@@ -2,6 +2,7 @@ import os
 import hashlib
 import requests
 
+
 def calcola_hash(nomefile):
 
     with open(nomefile, "rb") as f:
@@ -34,4 +35,17 @@ def scan_directory(percorso):
                 print(f"{file_path} è sicuro!")
 
 if __name__=="__main__":
-    scan_directory(input("Inserire il percorso del file o della cartella da scannerizzare: "))
+    
+  
+    
+    ok_percorso=False
+    
+    while not ok_percorso:
+        percorso = input("Inserire il percorso del file o della cartella da scannerizzare: ")
+        try:
+            if os.path.isdir(percorso):
+                scan_directory(percorso)
+                ok_percorso=True
+                break
+        except:
+            print("Inserire il percorso di una cartella")   
